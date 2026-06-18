@@ -4,4 +4,5 @@ import react from '@vitejs/plugin-react' // Импорт плагина для �
 // https://vite.dev/config/
 export default defineConfig({ // Экспорт конфигурации Vite по умолчанию
   plugins: [react()], // Подключение плагина React для трансформации .jsx и HMR
+  base: '/K-Means/', // Имя нашего хоста
 })
