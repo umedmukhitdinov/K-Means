@@ -184,6 +184,40 @@
     font-size: 13px;
     line-height: 1.6;
   }
+
+  .math-formula {
+    min-width: 0;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-family: 'STIX Two Math', 'Cambria Math', serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    scrollbar-width: thin;
+  }
+
+  .math-formula-line {
+    display: flex;
+    align-items: center;
+    min-width: max-content;
+  }
+
+  .math-formula-number {
+    width: 1.75rem;
+    flex: 0 0 1.75rem;
+    color: #64748b;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .math-formula math {
+    min-width: max-content;
+  }
+
+  .math-formula mtext {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.78em;
+  }
 }
 
 @layer utilities {
