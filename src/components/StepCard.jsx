@@ -1,36 +1,30 @@
 import { motion, AnimatePresence } from 'framer-motion'; // Анимация смены фаз и чисел SSE
 import { PHASE, STEP_INFO } from '../hooks/useKMeans'; // Константы фаз и тексты подсказок
 import { CLUSTER_COLORS } from '../utils/colors'; // Цвета для полос размера кластеров
+import {
+  AssignmentFormula,
+  InitializationFormula,
+  ObjectiveFormula,
+  UpdateFormula,
+} from './MathFormula';
 
 const PHASE_FORMULAS = { // Формулы, показываемые в карточке по фазе
   [PHASE.IDLE]: null, // В режиме ожидания формул нет
   [PHASE.INITIALIZED]: {
     title: 'K-Means++ инициализация',
-    formula: [
-      'P(xᵢ выбран) ∝ D(xᵢ)²',
-      'D(xᵢ) = min_c ||xᵢ - c||₂',
-    ],
+    formula: InitializationFormula,
   },
   [PHASE.ASSIGN]: {
     title: 'Назначение точек',
-    formula: [
-      'cᵢ = argmin_k ||xᵢ - μₖ||₂²',
-      '     k ∈ {1, ..., K}',
-    ],
+    formula: AssignmentFormula,
   },
   [PHASE.UPDATE]: {
     title: 'Пересчёт центроидов',
-    formula: [
-      'μₖ = (1/|Sₖ|) Σ xᵢ',
-      '      xᵢ ∈ Sₖ',
-    ],
+    formula: UpdateFormula,
   },
   [PHASE.CONVERGED]: {
     title: 'Целевая функция (SSE)',
-    formula: [
-      'J = Σₖ Σ_{xᵢ∈Sₖ} ||xᵢ - μₖ||₂²',
-      'J → min (локальный минимум)',
-    ],
+    formula: ObjectiveFormula,
   },
 };
 
@@ -186,9 +180,7 @@ export default function StepCard({ phase, iteration, sseHistory, assignments, k 
       {formula && (
         <div className="formula-box">
           <div className="text-xs text-indigo-400 font-semibold mb-2">{formula.title}</div>
-          {formula.formula.map((line, i) => (
-            <div key={i} className="text-slate-300 text-xs leading-relaxed">{line}</div>
-          ))}
+          <formula.formula />
         </div>
       )}
 

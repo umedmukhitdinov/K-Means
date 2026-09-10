@@ -1,5 +1,11 @@
 import { motion } from 'framer-motion'; // Анимация секции и смены вкладок
 import { useState } from 'react'; // Состояние активной вкладки теории
+import {
+  ConvergenceFormula,
+  EuclideanFormula,
+  ObjectiveFormula,
+  UpdateFormula,
+} from './MathFormula';
 
 const SECTIONS = [ // Массив вкладок с контентом (JSX)
   {
@@ -76,25 +82,25 @@ const SECTIONS = [ // Массив вкладок с контентом (JSX)
       <div className="space-y-4">
         <div className="formula-box">
           <div className="text-xs text-indigo-400 font-semibold mb-2">Целевая функция (SSE / Inertia)</div>
-          <div className="text-slate-200 text-sm">{'J = Σₖ₌₁ᴷ Σ_{xᵢ∈Sₖ} ‖xᵢ − μₖ‖²'}</div>
+          <ObjectiveFormula />
           <div className="text-slate-500 text-xs mt-2">
             Задача: найти разбиение S₁, ..., Sₖ, минимизирующее J
           </div>
         </div>
         <div className="formula-box">
           <div className="text-xs text-cyan-400 font-semibold mb-2">Евклидово расстояние</div>
-          <div className="text-slate-200 text-sm">d(x, μ) = √(Σᵢ (xᵢ − μᵢ)²)</div>
+          <EuclideanFormula />
         </div>
         <div className="formula-box">
           <div className="text-xs text-violet-400 font-semibold mb-2">Обновление центроида</div>
-          <div className="text-slate-200 text-sm">{'μₖ = (1 / |Sₖ|) × Σ_{xᵢ∈Sₖ} xᵢ'}</div>
+          <UpdateFormula />
           <div className="text-slate-500 text-xs mt-2">
             Среднее арифметическое — единственная точка, минимизирующая SSE внутри кластера
           </div>
         </div>
         <div className="formula-box">
           <div className="text-xs text-emerald-400 font-semibold mb-2">Условие сходимости</div>
-          <div className="text-slate-200 text-sm">‖μₖ_new − μₖ_old‖₂ &lt; ε, ∀k</div>
+          <ConvergenceFormula />
         </div>
       </div>
     ),
